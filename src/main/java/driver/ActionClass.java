@@ -126,7 +126,7 @@ public class ActionClass extends TestBaseClass {
 		boolean flag = false;
 		try {
 
-			boolean ele = new WebDriverWait(driver, 30).until(ExpectedConditions.and(
+			boolean ele = new WebDriverWait(driver, 60).until(ExpectedConditions.and(
 					ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty(object))),
 					ExpectedConditions.elementToBeClickable(By.xpath(prop.getProperty(object)))));
 			if (ele == true) {
@@ -161,7 +161,7 @@ public class ActionClass extends TestBaseClass {
 		return flag;
 	}
 
-	public boolean RunOrResumeEngineclick(String object) {
+	public boolean csvDownloadclick(String object) {
 		/*
 		 * @author :Deepa Panikkaveetil
 		 *
@@ -183,6 +183,72 @@ public class ActionClass extends TestBaseClass {
 		try {
 
 			boolean ele = new WebDriverWait(driver, 300).until(ExpectedConditions.and(
+					ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty(object))),
+					ExpectedConditions.elementToBeClickable(By.xpath(prop.getProperty(object)))));
+			if (ele == true) {
+
+				WebElement element = driver.findElement(By.xpath(prop.getProperty(object)));
+
+				// Actions action = new Actions(driver);
+				System.out.println("is this the element???>>" + element);
+				element.click();
+				// action.moveToElement(element).click(element).build().perform();
+
+				Thread.sleep(5000);
+
+				// action.moveToElement(element).sendKeys(Keys.RETURN);
+				// driver.findElement(By.xpath(prop.getProperty(object))).click();
+				if (driver.getPageSource().equalsIgnoreCase("Data Set BatchDecisionOutput is empty")) {
+					flag = false;
+					System.out.println("Dataset is empty");
+					return flag;
+				}
+				flag = true;
+			} else {
+				System.out.println("run engine is not clicked..");
+				flag = false;
+				return flag;
+			}
+
+		} catch (TimeoutException e) {
+
+			System.out.println("Are you sure the element is present");
+			flag = false;
+			return flag;
+			// TODO: handle exception
+		} catch (Exception e) {
+			System.out.println("element is not present" + " " + e.getMessage());
+			flag = false;
+			return flag;
+			// TODO: handle exception
+		}
+
+		// TODO: handle exception
+		return flag;
+	}
+
+	public boolean RunOrResumeEngineclick(String object) {
+		/*
+		 * @author :Deepa Panikkaveetil
+		 *
+		 * 
+		 * @date :3/19/2019
+		 * 
+		 * @modified by:
+		 * 
+		 * @modified date:
+		 * 
+		 * @USEFOR :The method is to clik on any web element
+		 * 
+		 * @Parameters:Passing the xpath locator from the properties file
+		 * 
+		 * 
+		 * 
+		 */
+		boolean flag = false;
+		try {
+
+			boolean ele = new WebDriverWait(driver, 200).until(ExpectedConditions.and(
 					ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty(object))),
 					ExpectedConditions.elementToBeClickable(By.xpath(prop.getProperty(object)))));
 			if (ele == true) {
@@ -384,7 +450,7 @@ public class ActionClass extends TestBaseClass {
 			System.out.println("Rollback button is not present");
 			return flag;
 		}
-		// code to click the button of the baseline version tab
+		// code to the button of the baseline version tab
 		try {
 			btnRollbackTab.click();
 			flag = true;
@@ -425,7 +491,7 @@ public class ActionClass extends TestBaseClass {
 
 	}
 
-	public boolean windowsopenURLwindows() {
+	public boolean openURLWindows() {
 		/*
 		 * @author:Deepa Panikkaeetil
 		 * 
